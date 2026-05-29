@@ -4,6 +4,96 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CyplexAI Company Hub</title>
+    <style>
+      :root {
+        --ink: #0D1B2A;
+        --muted: #415A77;
+        --line: #D5D7D1;
+        --paper: #FAFAF7;
+        --panel: #FFFFFF;
+        --magenta: #DB0D71;
+        --magenta-soft: #F9E6F0;
+        --lime-soft: #F5FFCF;
+        --font-heading: "Quicksand", "Nunito", sans-serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --shadow: 0 2px 12px rgba(27, 38, 59, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3 { font-family: var(--font-heading); }
+      h1 { margin: 0; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; letter-spacing: 0; max-width: 900px; }
+      h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; letter-spacing: 0; }
+      h3 { margin: 0; letter-spacing: 0; }
+      p { line-height: 1.55; }
+      .app-shell { display: grid; grid-template-columns: 272px minmax(0, 1fr); min-height: 100vh; }
+      .sidebar { position: sticky; top: 0; height: 100vh; padding: 24px 18px; border-right: 1px solid var(--line); background: rgba(250, 250, 247, 0.95); display: flex; flex-direction: column; gap: 28px; }
+      .brand { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+      .brand-mark { width: 168px; min-height: 48px; display: flex; align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #E0E1DD; }
+      .brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+      .brand small, .eyebrow { color: var(--magenta); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+      .nav-list { display: grid; gap: 6px; }
+      .nav-list a { padding: 10px 12px; border-radius: 8px; color: var(--muted); font-weight: 800; }
+      .nav-list a.active, .nav-list a:hover { background: var(--magenta-soft); color: var(--ink); }
+      .sidebar-note { margin-top: auto; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); box-shadow: var(--shadow); }
+      .status-dot { width: 10px; height: 10px; display: inline-block; border-radius: 50%; background: #3A9E80; margin-right: 8px; }
+      main { min-width: 0; }
+      .hero-section, .section-band { padding: 72px clamp(24px, 5vw, 80px); border-bottom: 1px solid var(--line); }
+      .hero-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 520px); gap: 40px; align-items: start; }
+      .hero-copy > p:last-child, .section-heading > p { max-width: 780px; color: var(--muted); font-size: 1.08rem; }
+      .pulse-panel, .content-card, .model-card, .update-card, .ownership-panel, .org-chart, .governance article, .quick-card, .platform-card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); box-shadow: var(--shadow); }
+      .pulse-panel { padding: 28px; }
+      .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .pulse-grid > div { padding: 22px; border-right: 1px solid var(--line); }
+      .pulse-grid > div:last-child { border-right: 0; }
+      .pulse-grid span { display: block; font-size: 3rem; font-weight: 900; }
+      .pulse-grid small, .model-role, .doc-meta { color: var(--muted); font-weight: 800; }
+      .help-toggle-row { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin-top: 24px; }
+      .help-toggle { display: inline-flex; gap: 8px; align-items: center; font-weight: 800; text-transform: uppercase; }
+      .activity-list, .quick-grid, .content-list, .model-grid, .governance-grid, .platform-grid { display: grid; gap: 16px; }
+      .activity-list { margin-top: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .activity-item { display: flex; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #F4F4F1; }
+      .activity-item span { font-size: 2rem; font-weight: 900; }
+      .quick-grid, .content-list, .governance-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .quick-card, .content-card, .model-card, .update-card, .governance article { padding: 20px; }
+      .quick-card span, .ownership-item span { color: var(--magenta); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+      .platform-grid { grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1.2fr); align-items: stretch; }
+      .platform-card { padding: 24px; }
+      .platform-metric strong { display: block; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.95; }
+      .platform-metric span { display: block; margin-top: 8px; color: var(--muted); font-weight: 900; text-transform: uppercase; }
+      .platform-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .action-link { display: inline-flex; align-items: center; min-height: 42px; padding: 0 14px; border-radius: 8px; background: var(--ink); color: white; font-weight: 900; }
+      .action-link.secondary { background: var(--magenta-soft); color: var(--ink); }
+      .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) 180px 180px; gap: 12px; margin: 24px 0; }
+      .toolbar label { display: grid; gap: 6px; color: var(--muted); font-weight: 900; text-transform: uppercase; }
+      input, select { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 0 12px; font: inherit; background: var(--panel); }
+      .dashboard-layout, .team-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
+      .model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .model-topline, .content-topline, .feed-header { display: flex; justify-content: space-between; gap: 16px; align-items: start; }
+      .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .tag { display: inline-flex; align-items: center; min-height: 26px; padding: 4px 8px; border-radius: 6px; background: var(--lime-soft); font-size: 0.78rem; font-weight: 800; }
+      .tag.rose, .tag.gold { background: var(--magenta-soft); color: #B5095D; }
+      .tag.blue { background: #E8EEF5; color: #1B263B; }
+      .capability-list { padding-left: 1.2rem; color: var(--muted); }
+      .update-feed, .ownership-panel { padding: 18px; }
+      .update-card, .ownership-item { margin-top: 12px; }
+      .org-chart { padding: 18px; }
+      .org-group { display: grid; gap: 18px; }
+      .report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+      .person-card { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 14px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: #F7F7F4; }
+      .person-card.leader { max-width: 520px; margin: 0 auto; background: var(--magenta-soft); }
+      .avatar { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 8px; background: var(--ink); color: white; font-weight: 900; }
+      .ownership-item { padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: #F7F7F4; }
+      .tips-off .has-tip::after, .tips-off .has-tip p:last-child { display: none; }
+      @media (max-width: 980px) {
+        .app-shell, .hero-section, .dashboard-layout, .team-layout { display: block; }
+        .sidebar { position: relative; height: auto; }
+        .quick-grid, .content-list, .governance-grid, .model-grid, .activity-list, .report-grid, .platform-grid { grid-template-columns: 1fr; }
+        .toolbar { grid-template-columns: 1fr; }
+      }
+    </style>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -23,6 +113,7 @@
           <a href="#training">Training</a>
           <a href="#how-tos">How-Tos</a>
           <a href="#faqs">FAQs</a>
+          <a href="#learnworlds">LearnWorlds</a>
           <a href="#team">Team Directory</a>
           <a href="#knowledge">Company Knowledge</a>
           <a href="#governance">Governance</a>
@@ -163,6 +254,29 @@
           <div class="content-list" data-category="FAQ"></div>
         </section>
 
+        <section id="learnworlds" class="section-band">
+          <div class="section-heading">
+            <p class="eyebrow">Learning platform</p>
+            <h2>LearnWorlds</h2>
+            <p>Track learner growth, training activity, and the path back to the LearnWorlds dashboard.</p>
+          </div>
+          <div class="platform-grid">
+            <article class="platform-card platform-metric has-tip" tabindex="0" data-tip="Placeholder until the LearnWorlds user count is connected to a manual update or API source.">
+              <strong id="learnWorldsUsers">Pending</strong>
+              <span>Total users</span>
+              <p>User count will live here once we connect LearnWorlds data.</p>
+            </article>
+            <article class="platform-card has-tip" tabindex="0" data-tip="This is a placeholder link. Replace it with the CyplexAI LearnWorlds admin dashboard URL when ready.">
+              <h3>Dashboard Access</h3>
+              <p>Use this area as the team’s quick jump to LearnWorlds. For now the link is intentionally marked as a placeholder so nobody mistakes it for a live integration.</p>
+              <div class="platform-actions">
+                <a class="action-link" href="#" aria-label="LearnWorlds dashboard link placeholder">Dashboard Placeholder</a>
+                <a class="action-link secondary" href="#training">Review Training Hub</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section id="team" class="section-band">
           <div class="section-heading">
             <p class="eyebrow">People and ownership</p>
@@ -212,5 +326,133 @@
 
     <script src="data/bootstrap-data.js?v=20260529-leslie-strategy"></script>
     <script src="app.js?v=20260529-file-fallback"></script>
+    <script>
+      window.CompanyHubInlineFallback = {
+        llms: {
+          models: [
+            {
+              provider: "OpenAI",
+              product: "Codex",
+              category: "Coding Agent",
+              status: "Production Ready",
+              capabilities: [
+                "Delegates codebase tasks with planning, edits, verification, and final reporting.",
+                "Works well for terminal-heavy implementation, test running, file inspection, and repository cleanup.",
+                "Can create frontend experiences, static sites, local tools, scripts, and structured documentation.",
+                "Supports local workspace collaboration and automation-friendly development workflows."
+              ],
+              best_for: ["Autonomous coding", "Repo maintenance", "Internal tools"],
+              limitations: ["Needs project-specific secrets and private service access configured by the user.", "Should verify claims about current external products before dashboard publication."],
+              last_verified: "2026-05-29",
+              recent_updates: [{ date: "2026-05-29", title: "Company hub starter role defined", summary: "Codex is assigned as the primary builder for the static portal, dashboard data model, and future GitHub automation.", review_status: "Needs Review" }]
+            },
+            {
+              provider: "Anthropic",
+              product: "Claude Code",
+              category: "Coding Agent",
+              status: "Needs Review",
+              capabilities: ["Strong pair-programming flow for architectural reasoning and codebase discussion.", "Useful for code explanation, editing strategy, and complex debugging sessions.", "Can work closely with a developer in an interactive terminal-style workflow."],
+              best_for: ["Pair programming", "Architecture review", "Debugging"],
+              limitations: ["Current feature claims should be checked against official Anthropic documentation before publishing."],
+              last_verified: "2026-05-29",
+              recent_updates: [{ date: "2026-05-29", title: "Claude Code profile placeholder added", summary: "Initial comparison role captured from the planning conversation. Needs official source review before external publication.", review_status: "Needs Review" }]
+            },
+            {
+              provider: "Google",
+              product: "Gemini",
+              category: "Workspace AI",
+              status: "Needs Review",
+              capabilities: ["Useful for Google Workspace-centered workflows across Gmail, Docs, Drive, and Calendar contexts.", "Can support brainstorming, summarization, research preparation, and internal knowledge capture.", "Works well as a planning assistant when content originates inside Google tools."],
+              best_for: ["Google Workspace", "Brainstorming", "Knowledge capture"],
+              limitations: ["Shared chat details and product-specific claims need verification before company-wide publication."],
+              last_verified: "2026-05-29",
+              recent_updates: [{ date: "2026-05-29", title: "Gemini used for dashboard architecture planning", summary: "Gemini recommended a JSON-backed dashboard and GitHub Actions automation flow for low-cost maintenance.", review_status: "Needs Review" }]
+            },
+            {
+              provider: "Perplexity",
+              product: "Perplexity",
+              category: "Research Agent",
+              status: "Needs Review",
+              capabilities: ["Strong fit for citation-heavy research, current market checks, and competitive intelligence.", "Useful for quickly finding current source-backed information across the web.", "Can support dashboard verification by collecting source links for product updates."],
+              best_for: ["Live research", "Source discovery", "Competitive analysis"],
+              limitations: ["Research summaries still require human judgment before becoming official company guidance."],
+              last_verified: "2026-05-29",
+              recent_updates: [{ date: "2026-05-29", title: "Research role added to Big Four dashboard", summary: "Perplexity is represented as the real-time research and source-discovery system in the company AI stack.", review_status: "Needs Review" }]
+            }
+          ]
+        },
+        content: {
+          items: [
+            ["SOP", "Publishing a New Company SOP", "Draft, review, approve, publish, and schedule review dates for new standard operating procedures.", "Operations", "2026-06-30"],
+            ["SOP", "Updating the LLM Capability Dashboard", "Use verified sources, assign confidence, mark review status, and update the JSON data file.", "AI Operations", "2026-06-30"],
+            ["Training", "New Staff AI Tool Orientation", "Intro path for when to use Codex, Claude, Gemini, and Perplexity in daily company work.", "Training", "2026-07-15"],
+            ["Training", "SOP Writing and Review Basics", "Training sequence for writing clear SOPs with owners, versioning, and review cycles.", "Operations", "2026-07-15"],
+            ["How-To", "Add a Newsletter Text File", "Place a newsletter text file in incoming_newsletters so the future automation can parse it.", "AI Operations", "2026-06-15"],
+            ["How-To", "Review a Draft LLM Update", "Check source quality, verify claims, approve or reject the proposed dashboard change.", "AI Operations", "2026-06-15"],
+            ["FAQ", "Which AI tool should I use first?", "Use Codex for build work, Claude for deep code reasoning, Gemini for Workspace-heavy planning, and Perplexity for source-backed research.", "AI Operations", "2026-06-30"],
+            ["FAQ", "Can the dashboard update itself?", "Yes, but the recommended first version is semi-automated: AI drafts updates and a human approves them.", "AI Operations", "2026-06-30"],
+            ["Knowledge", "Company Knowledge Governance", "The hub is the source of truth only when pages include owners, review dates, and approval status.", "Operations", "2026-07-31"],
+            ["Knowledge", "AI Stack Operating Roles", "Defines the working role of each major AI system in CyplexAI's internal operations.", "AI Operations", "2026-07-31"]
+          ].map(([category, title, summary, owner, review_date]) => ({ category, title, summary, owner, review_date, version: "0.1", status: "Needs Review" }))
+        },
+        team: {
+          people: [
+            { id: "dave", name: "Dave Ashby", initials: "DA", role: "Chief Learning Architect", reports_to: null, owns: ["Learning architecture", "AI methodology", "Final approvals"], tooltip: "Dave owns learning architecture, AI methodology, and final approvals." },
+            { id: "jeff", name: "Jeff Erni", initials: "J", role: "Business Operations & Development", reports_to: "dave", owns: ["Business operations", "Development", "Operational workflows"], tooltip: "Jeff owns operational workflows, business development, and implementation follow-through." },
+            { id: "steph", name: "Stephanie Everett", initials: "S", role: "Education & Community Programs", reports_to: "dave", owns: ["Education programs", "Community programs", "Training content"], tooltip: "Stephanie owns education programming, community-facing programs, and training content." },
+            { id: "leslie", name: "Leslie", initials: "L", role: "Quality Assurance & Strategy", reports_to: "dave", owns: ["Quality assurance", "Strategic review", "Team support"], tooltip: "Leslie supports quality assurance, strategic review, and team-facing support so important work is checked before it becomes company truth." }
+          ],
+          ownerships: [
+            ["Company Hub", "dave", "Overall learning architecture, what belongs in the hub, and what is ready to share."],
+            ["SOP Library", "jeff", "Operational procedures, workflow clarity, and business operations documentation."],
+            ["Training Hub", "steph", "Education programming, role-based training paths, onboarding materials, and learning resources."],
+            ["LLM Dashboard", "dave", "AI methodology, capability tracking, source verification, and update approval."],
+            ["Quality Assurance", "leslie", "Quality checks, strategic review, and making sure important resources are clear before the team relies on them."],
+            ["Operational Workflows", "jeff", "Internal workflow ownership, business operations, and implementation follow-through."]
+          ].map(([area, owner_id, description]) => ({ area, owner_id, description }))
+        }
+      };
+
+      setTimeout(() => {
+        const byId = (id) => document.getElementById(id);
+        if (!byId("metricDocs") || byId("metricDocs").textContent !== "0") return;
+
+        const data = window.COMPANY_HUB_BOOTSTRAP || window.CompanyHubInlineFallback;
+        const llms = data.llms.models;
+        const content = data.content.items;
+        const team = data.team;
+        const statusClass = (status) => status === "Production Ready" ? "blue" : "rose";
+        const personById = (id) => team.people.find((person) => person.id === id);
+
+        byId("metricDocs").textContent = content.length;
+        byId("metricModels").textContent = llms.length;
+        byId("metricUpdates").textContent = llms.reduce((sum, model) => sum + model.recent_updates.length, 0);
+        byId("activityList").innerHTML = [
+          ["Docs needing review", content.filter((item) => item.status === "Needs Review").length],
+          ["Production-ready AI profiles", llms.filter((model) => model.status === "Production Ready").length],
+          ["AI profiles needing review", llms.filter((model) => model.status === "Needs Review").length],
+          ["Updates captured", llms.reduce((sum, model) => sum + model.recent_updates.length, 0)]
+        ].map(([label, value]) => `<article class="activity-item"><span>${value}</span><div><strong>${label}</strong><p>Current hub count for ${label.toLowerCase()}.</p></div></article>`).join("");
+        byId("quickGrid").innerHTML = [
+          ["Operations", "Find Current SOPs", "Use the SOP Library for approved operating procedures with owners and review dates.", "#sops"],
+          ["AI Systems", "Check LLM Capabilities", "Compare OpenAI, Claude, Gemini, and Perplexity by role, strength, limitation, and readiness.", "#llm-dashboard"],
+          ["Enablement", "Start Training", "Use role-based learning paths and recurring practice materials for onboarding and upskilling.", "#training"]
+        ].map(([label, title, text, href]) => `<a class="quick-card" href="${href}"><span>${label}</span><h3>${title}</h3><p>${text}</p></a>`).join("");
+        byId("providerFilter").innerHTML = `<option value="all">All providers</option>${[...new Set(llms.map((model) => model.provider))].sort().map((provider) => `<option value="${provider}">${provider}</option>`).join("")}`;
+        byId("modelGrid").innerHTML = llms.map((model) => `<article class="model-card"><div class="model-topline"><div><h3>${model.product}</h3><span class="model-role">${model.provider} / ${model.category}</span></div><span class="tag ${statusClass(model.status)}">${model.status}</span></div><div class="tag-row">${model.best_for.map((item) => `<span class="tag">${item}</span>`).join("")}</div><ul class="capability-list">${model.capabilities.map((item) => `<li>${item}</li>`).join("")}</ul><p><strong>Known limits:</strong> ${model.limitations.join("; ")}</p><p class="model-role">Last verified: ${model.last_verified}</p></article>`).join("");
+        const updates = llms.flatMap((model) => model.recent_updates.map((update) => ({ ...update, product: model.product })));
+        byId("lastVerified").textContent = updates[0]?.date || "Pending";
+        byId("updateFeed").innerHTML = updates.map((update) => `<article class="update-card"><strong>${update.product}: ${update.title}</strong><small>${update.date} / ${update.review_status}</small><p>${update.summary}</p></article>`).join("");
+        document.querySelectorAll(".content-list").forEach((list) => {
+          const entries = content.filter((item) => item.category === list.dataset.category);
+          list.innerHTML = entries.map((item) => `<article class="content-card"><div class="content-topline"><h3>${item.title}</h3><span class="tag rose">${item.status}</span></div><p>${item.summary}</p><footer><span class="doc-meta">Owner: ${item.owner}</span> <span class="doc-meta">Review: ${item.review_date}</span> <span class="doc-meta">v${item.version}</span></footer></article>`).join("");
+        });
+        const leadership = team.people.filter((person) => !person.reports_to);
+        const reports = team.people.filter((person) => person.reports_to);
+        const card = (person, level = "") => `<article class="person-card ${level}"><span class="avatar">${person.initials}</span><div><h3>${person.name}</h3><p>${person.role}</p><div class="tag-row">${person.owns.map((item) => `<span class="tag">${item}</span>`).join("")}</div></div></article>`;
+        byId("orgChart").innerHTML = `<div class="org-group">${leadership.map((person) => card(person, "leader")).join("")}<div class="report-grid">${reports.map((person) => card(person)).join("")}</div></div>`;
+        byId("ownershipList").innerHTML = team.ownerships.map((item) => `<article class="ownership-item"><span>${item.area}</span><strong>${personById(item.owner_id)?.name || "Unassigned"}</strong><p>${item.description}</p></article>`).join("");
+      }, 800);
+    </script>
   </body>
 </html>

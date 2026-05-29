@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "people": [
+    {
+      "id": "dave",
+      "name": "Dave Ashby",
+      "initials": "DA",
+      "role": "Chief Learning Architect",
+      "reports_to": null,
+      "owns": [
+        "Learning architecture",
+        "AI methodology",
+        "Final approvals"
+      ],
+      "tooltip": "Dave is listed publicly as Chief Learning Architect and owns learning architecture, AI methodology, and final approvals."
+    },
+    {
+      "id": "jeff",
+      "name": "Jeff Erni",
+      "initials": "J",
+      "role": "Business Operations & Development",
+      "reports_to": "dave",
+      "owns": [
+        "Business operations",
+        "Development",
+        "Operational workflows"
+      ],
+      "tooltip": "Jeff is listed publicly as Business Operations & Development and owns operational workflows, business development, and implementation follow-through."
+    },
+    {
+      "id": "steph",
+      "name": "Stephanie Everett",
+      "initials": "S",
+      "role": "Education & Community Programs",
+      "reports_to": "dave",
+      "owns": [
+        "Education programs",
+        "Community programs",
+        "Training content"
+      ],
+      "tooltip": "Stephanie is listed publicly as Education & Community Programs and owns education programming, community-facing programs, and training content."
+    },
+    {
+      "id": "leslie",
+      "name": "Leslie",
+      "initials": "L",
+      "role": "Quality Assurance & Strategy",
+      "reports_to": "dave",
+      "owns": [
+        "Quality assurance",
+        "Strategic review",
+        "Team support"
+      ],
+      "tooltip": "Leslie supports quality assurance, strategic review, and team-facing support so important work is checked before it becomes company truth."
+    }
+  ],
+  "ownerships": [
+    {
+      "area": "Company Hub",
+      "owner_id": "dave",
+      "description": "Overall learning architecture, what belongs in the hub, and what is ready to share."
+    },
+    {
+      "area": "SOP Library",
+      "owner_id": "jeff",
+      "description": "Operational procedures, workflow clarity, and business operations documentation."
+    },
+    {
+      "area": "Training Hub",
+      "owner_id": "steph",
+      "description": "Education programming, role-based training paths, onboarding materials, and learning resources."
+    },
+    {
+      "area": "LLM Dashboard",
+      "owner_id": "dave",
+      "description": "AI methodology, capability tracking, source verification, and update approval."
+    },
+    {
+      "area": "Quality Assurance",
+      "owner_id": "leslie",
+      "description": "Quality checks, strategic review, and making sure important resources are clear before the team relies on them."
+    },
+    {
+      "area": "Operational Workflows",
+      "owner_id": "jeff",
+      "description": "Internal workflow ownership, business operations, and implementation follow-through."
+    }
+  ]
+}

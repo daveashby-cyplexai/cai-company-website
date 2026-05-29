@@ -1,0 +1,95 @@
+{
+  "schema_version": "0.1.0",
+  "items": [
+    {
+      "category": "SOP",
+      "title": "Publishing a New Company SOP",
+      "summary": "Draft, review, approve, publish, and schedule review dates for new standard operating procedures.",
+      "owner": "Operations",
+      "review_date": "2026-06-30",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "SOP",
+      "title": "Updating the LLM Capability Dashboard",
+      "summary": "Use verified sources, assign confidence, mark review status, and update the JSON data file.",
+      "owner": "AI Operations",
+      "review_date": "2026-06-30",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "Training",
+      "title": "New Staff AI Tool Orientation",
+      "summary": "Intro path for when to use Codex, Claude, Gemini, and Perplexity in daily company work.",
+      "owner": "Training",
+      "review_date": "2026-07-15",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "Training",
+      "title": "SOP Writing and Review Basics",
+      "summary": "Training sequence for writing clear SOPs with owners, versioning, and review cycles.",
+      "owner": "Operations",
+      "review_date": "2026-07-15",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "How-To",
+      "title": "Add a Newsletter Text File",
+      "summary": "Place a newsletter text file in incoming_newsletters so the future automation can parse it.",
+      "owner": "AI Operations",
+      "review_date": "2026-06-15",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "How-To",
+      "title": "Review a Draft LLM Update",
+      "summary": "Check source quality, verify claims, approve or reject the proposed dashboard change.",
+      "owner": "AI Operations",
+      "review_date": "2026-06-15",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "FAQ",
+      "title": "Which AI tool should I use first?",
+      "summary": "Use Codex for build work, Claude for deep code reasoning, Gemini for Workspace-heavy planning, and Perplexity for source-backed research.",
+      "owner": "AI Operations",
+      "review_date": "2026-06-30",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "FAQ",
+      "title": "Can the dashboard update itself?",
+      "summary": "Yes, but the recommended first version is semi-automated: AI drafts updates and a human approves them.",
+      "owner": "AI Operations",
+      "review_date": "2026-06-30",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "Knowledge",
+      "title": "Company Knowledge Governance",
+      "summary": "The hub is the source of truth only when pages include owners, review dates, and approval status.",
+      "owner": "Operations",
+      "review_date": "2026-07-31",
+      "version": "0.1",
+      "status": "Needs Review"
+    },
+    {
+      "category": "Knowledge",
+      "title": "AI Stack Operating Roles",
+      "summary": "Defines the working role of each major AI system in CyplexAI's internal operations.",
+      "owner": "AI Operations",
+      "review_date": "2026-07-31",
+      "version": "0.1",
+      "status": "Needs Review"
+    }
+  ]
+}
